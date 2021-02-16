@@ -32,12 +32,6 @@ class _TimerPageState extends State<TimerPage> {
               pageBuilder: (context, animation, secondaryAnimation) {
                 return TimerCountingPage();
               },
-              transitionsBuilder: (BuildContext context,
-                  Animation<double> animation,
-                  Animation<double> secondaryAnimation,
-                  Widget child) {
-                return child;
-              },
             );
             Navigator.of(context).push(route);
           },

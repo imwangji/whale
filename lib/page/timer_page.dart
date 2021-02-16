@@ -1,4 +1,8 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:whale/component/timer_card.dart';
+import 'package:whale/page/timer_counting_page.dart';
+import 'package:whale/type/timer_card_configuration.dart';
 
 class TimerPage extends StatefulWidget {
   @override
@@ -9,8 +13,35 @@ class _TimerPageState extends State<TimerPage> {
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
-      child: Center(
-        child: Text('TimerPage'),
+      navigationBar: CupertinoNavigationBar(
+          trailing: CupertinoButton(
+              child: Icon(CupertinoIcons.add), onPressed: () {})),
+      child: SafeArea(
+        child: GestureDetector(
+          child: Hero(
+            tag: "timer_card",
+            child: TimerCard(
+              TimerCardConfiguration(
+                isWithMargin: true,
+                isWithBorderRadius: true,
+              ),
+            ),
+          ),
+          onTap: () {
+            var route = PageRouteBuilder(
+              pageBuilder: (context, animation, secondaryAnimation) {
+                return TimerCountingPage();
+              },
+              transitionsBuilder: (BuildContext context,
+                  Animation<double> animation,
+                  Animation<double> secondaryAnimation,
+                  Widget child) {
+                return child;
+              },
+            );
+            Navigator.of(context).push(route);
+          },
+        ),
       ),
     );
   }

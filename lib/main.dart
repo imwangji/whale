@@ -32,10 +32,10 @@ class _MyHomePageState extends State<MyHomePage> {
     return CupertinoTabScaffold(
       tabBar: CupertinoTabBar(
         items: [
-          BottomNavigationBarItem(icon: Icon(Icons.timer)),
-          BottomNavigationBarItem(icon: Icon(Icons.format_quote_outlined)),
-          BottomNavigationBarItem(icon: Icon(Icons.photo_outlined)),
-          BottomNavigationBarItem(icon: Icon(Icons.account_circle_outlined)),
+          BottomNavigationBarItem(icon: Icon(CupertinoIcons.timer)),
+          BottomNavigationBarItem(icon: Icon(CupertinoIcons.quote_bubble)),
+          BottomNavigationBarItem(icon: Icon(CupertinoIcons.photo_on_rectangle)),
+          BottomNavigationBarItem(icon: Icon(CupertinoIcons.person_circle)),
         ],
       ),
       tabBuilder: (context, index) {

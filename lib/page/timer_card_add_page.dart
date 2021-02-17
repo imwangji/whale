@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:whale/component/base_padding.dart';
+import 'package:whale/component/text_label_arrow.dart';
 
 class TimerCardAddPage extends StatefulWidget {
   @override
@@ -22,32 +22,7 @@ class _TimerCardAddPageState extends State<TimerCardAddPage> {
       child: SafeArea(
         child: Column(
           children: [
-            Container(
-              color: CupertinoColors.white,
-              child: BasePadding(
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Text("项目名称"),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(right: 12, left: 12),
-                      child: Text(
-                        "学习angular",
-                        style: TextStyle(
-                          color: CupertinoColors.secondaryLabel,
-                        ),
-                      ),
-                    ),
-                    Icon(
-                      CupertinoIcons.right_chevron,
-                      size: 16,
-                      color: CupertinoColors.systemGrey,
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            TextLabelArrow(text: "项目名称",label: "学习angular",onTap: (){print(123);},)
           ],
         ),
       ),

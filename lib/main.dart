@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:whale/component/global_counting_bar.dart';
 import 'package:whale/page/timer_page.dart';
 import 'package:whale/provider/current_timer_card.dart';
 
@@ -61,22 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
             return SafeArea(
               child: Column(
                 children: [
-                  Container(
-                    alignment: Alignment.centerLeft,
-                    margin:EdgeInsets.only(left: 16,right: 16,bottom: 8),
-                    padding:EdgeInsets.all(12),
-                    decoration: BoxDecoration(
-                      color: CupertinoColors.activeGreen,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text("angular学习中",style: TextStyle(color: CupertinoColors.white),),
-                        Text("0:12:12",style: TextStyle(color: CupertinoColors.white),),
-                      ],
-                    )
-                  ),
+                  GlobalCountingBar(),
                   TimerPage(),
                 ],
               ),

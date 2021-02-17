@@ -15,14 +15,45 @@ class _TimerCardAddPageState extends State<TimerCardAddPage> {
       navigationBar: CupertinoNavigationBar(
         middle: Text("添加计时项目"),
         trailing: GestureDetector(
-          onTap: (){},
-          child: Text("完成",style: TextStyle(color: CupertinoColors.activeBlue),),
+          onTap: () {},
+          child: Text(
+            "完成",
+            style: TextStyle(color: CupertinoColors.activeBlue),
+          ),
         ),
       ),
       child: SafeArea(
         child: Column(
           children: [
-            TextLabelArrow(text: "项目名称",label: "学习angular",onTap: (){print(123);},)
+            TextLabelArrow(
+              text: "名称",
+              label: "学习angular",
+              onTap: () {
+                print(123);
+              },
+            ),
+            Divider(
+              height: 1,
+            ),
+            TextLabelArrow(
+              text: "分类",
+              label: "",
+              onTap: () {
+                showCupertinoModalPopup(
+                  context: context,
+                  builder: (context) {
+                    return CupertinoActionSheet(
+                      actions: [
+                        CupertinoActionSheetAction(onPressed: (){}, child: Text("学习")),
+                        CupertinoActionSheetAction(onPressed: (){}, child: Text("娱乐")),
+                        CupertinoActionSheetAction(onPressed: (){}, child: Text("工作")),
+                        CupertinoActionSheetAction(onPressed: (){}, child: Text("琐碎")),
+                      ],
+                    );
+                  },
+                );
+              },
+            ),
           ],
         ),
       ),

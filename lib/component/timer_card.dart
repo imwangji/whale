@@ -42,6 +42,16 @@ class _TimerCardState extends State<TimerCard>
     }
   }
 
+  Widget getCloseButtonOrNot(){
+    if(this.widget.configuration.isCountingMode){
+      return GestureDetector(
+        child: Icon(CupertinoIcons.clear_circled_solid,color: CupertinoColors.white,),
+        onTap: this.widget.configuration.onCloseButtonTapped,
+      );
+    }else{
+      return Container();
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -67,12 +77,18 @@ class _TimerCardState extends State<TimerCard>
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                this.widget.configuration.categoryName,
-                style: TextStyle(
-                  fontSize: 16,
-                  color: CupertinoColors.extraLightBackgroundGray,
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    this.widget.configuration.categoryName,
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: CupertinoColors.extraLightBackgroundGray,
+                    ),
+                  ),
+                  getCloseButtonOrNot(),
+                ],
               ),
               Text(
                 this.widget.configuration.name,

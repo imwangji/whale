@@ -5,6 +5,7 @@ class TimerCardConfiguration {
   String name;
   String categoryName;
   double height;
+  Function onCloseButtonTapped;
   // ignore: empty_constructor_bodies
   TimerCardConfiguration({
     this.isCountingMode = false,
@@ -12,6 +13,7 @@ class TimerCardConfiguration {
     this.totalTime = 0,
     this.name = "学习Angular",
     this.height = 260,
-    this.categoryName = "学习"
+    this.categoryName = "学习",
+    this.onCloseButtonTapped,
   });
 }

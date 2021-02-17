@@ -14,6 +14,10 @@ class _TimerCardAddPageState extends State<TimerCardAddPage> {
       backgroundColor: CupertinoColors.systemGroupedBackground,
       navigationBar: CupertinoNavigationBar(
         middle: Text("添加计时项目"),
+        trailing: GestureDetector(
+          onTap: (){},
+          child: Text("完成",style: TextStyle(color: CupertinoColors.activeBlue),),
+        ),
       ),
       child: SafeArea(
         child: Column(

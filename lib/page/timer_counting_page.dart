@@ -3,6 +3,10 @@ import 'package:whale/component/timer_card.dart';
 import 'package:whale/type/timer_card_configuration.dart';
 
 class TimerCountingPage extends StatefulWidget {
+  TimerCardConfiguration timerCardConfiguration;
+
+  TimerCountingPage({@required this.timerCardConfiguration});
+
   @override
   _TimerCountingPageState createState() => _TimerCountingPageState();
 }
@@ -34,12 +38,7 @@ class _TimerCountingPageState extends State<TimerCountingPage>
             },
             child: Hero(
               tag: "timer_card",
-              child: TimerCard(
-                TimerCardConfiguration(
-                  isWithMargin: false,
-                  isWithBorderRadius: false,
-                ),
-              ),
+              child: TimerCard(this.widget.timerCardConfiguration),
             ),
           ),
         ),

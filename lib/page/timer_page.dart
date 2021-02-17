@@ -47,16 +47,18 @@ class _TimerPageState extends State<TimerPage> {
           child: Hero(
             tag: "timer_card",
             child: TimerCard(
-              TimerCardConfiguration(
-                isWithMargin: true,
-                isWithBorderRadius: true,
-              ),
+              TimerCardConfiguration(),
             ),
           ),
           onTap: () {
             var route = PageRouteBuilder(
               pageBuilder: (context, animation, secondaryAnimation) {
-                return TimerCountingPage();
+                return TimerCountingPage(
+                  timerCardConfiguration: TimerCardConfiguration(
+                    height: 500,
+                    isCountingMode: true,
+                  ),
+                );
               },
             );
             Navigator.of(context).push(route);

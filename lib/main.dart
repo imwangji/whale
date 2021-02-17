@@ -32,10 +32,10 @@ class _MyHomePageState extends State<MyHomePage> {
     return CupertinoTabScaffold(
       tabBar: CupertinoTabBar(
         items: [
-          BottomNavigationBarItem(icon: Icon(CupertinoIcons.timer)),
-          BottomNavigationBarItem(icon: Icon(CupertinoIcons.quote_bubble)),
-          BottomNavigationBarItem(icon: Icon(CupertinoIcons.photo_on_rectangle)),
-          BottomNavigationBarItem(icon: Icon(CupertinoIcons.person_circle)),
+          BottomNavigationBarItem(icon: Icon(CupertinoIcons.timer),label: "计时"),
+          BottomNavigationBarItem(icon: Icon(CupertinoIcons.quote_bubble),label: "书摘"),
+          BottomNavigationBarItem(icon: Icon(CupertinoIcons.photo_on_rectangle),label: "时刻"),
+          BottomNavigationBarItem(icon: Icon(CupertinoIcons.person_circle),label: "我"),
         ],
       ),
       tabBuilder: (context, index) {

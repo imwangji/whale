@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:whale/component/timer_card.dart';
+import 'package:whale/page/timer_card_add_page.dart';
 import 'package:whale/page/timer_counting_page.dart';
 import 'package:whale/type/timer_card_configuration.dart';
 
@@ -14,8 +15,18 @@ class _TimerPageState extends State<TimerPage> {
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
-          trailing: CupertinoButton(
-              child: Icon(CupertinoIcons.add), onPressed: () {})),
+        trailing: CupertinoButton(
+          child: Icon(CupertinoIcons.add),
+          onPressed: () {
+            Navigator.push(
+              context,
+              CupertinoPageRoute(
+                builder: (context) => TimerCardAddPage(),
+              ),
+            );
+          },
+        ),
+      ),
       child: SafeArea(
         child: GestureDetector(
           child: Hero(

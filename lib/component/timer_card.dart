@@ -5,8 +5,9 @@ import 'package:whale/type/timer_card_configuration.dart';
 // ignore: must_be_immutable
 class TimerCard extends StatefulWidget {
   TimerCardConfiguration configuration;
-  // ignore: empty_constructor_bodies
-  TimerCard(this.configuration) {}
+  TimerCard(configuration) {
+    this.configuration = configuration;
+  }
   @override
   _TimerCardState createState() => _TimerCardState();
 }

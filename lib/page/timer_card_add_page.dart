@@ -27,9 +27,34 @@ class _TimerCardAddPageState extends State<TimerCardAddPage> {
           children: [
             TextLabelArrow(
               text: "名称",
-              label: "学习angular",
+              label: "",
               onTap: () {
-                print(123);
+                showCupertinoDialog(
+                  context: context,
+                  builder: (context) {
+                    return CupertinoAlertDialog(
+                      title: Padding(
+                        padding: EdgeInsets.only(bottom: 12),
+                        child: Text("名称"),
+                      ),
+                      content: CupertinoTextField(),
+                      actions: [
+                        CupertinoDialogAction(
+                          child: Text('取消'),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                        CupertinoDialogAction(
+                          child: Text('确定'),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        )
+                      ],
+                    );
+                  },
+                );
               },
             ),
             Divider(
@@ -44,10 +69,14 @@ class _TimerCardAddPageState extends State<TimerCardAddPage> {
                   builder: (context) {
                     return CupertinoActionSheet(
                       actions: [
-                        CupertinoActionSheetAction(onPressed: (){}, child: Text("学习")),
-                        CupertinoActionSheetAction(onPressed: (){}, child: Text("娱乐")),
-                        CupertinoActionSheetAction(onPressed: (){}, child: Text("工作")),
-                        CupertinoActionSheetAction(onPressed: (){}, child: Text("琐碎")),
+                        CupertinoActionSheetAction(
+                            onPressed: () {}, child: Text("学习")),
+                        CupertinoActionSheetAction(
+                            onPressed: () {}, child: Text("娱乐")),
+                        CupertinoActionSheetAction(
+                            onPressed: () {}, child: Text("工作")),
+                        CupertinoActionSheetAction(
+                            onPressed: () {}, child: Text("琐碎")),
                       ],
                     );
                   },

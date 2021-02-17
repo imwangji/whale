@@ -15,6 +15,21 @@ class _TimerPageState extends State<TimerPage> {
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
+        backgroundColor: CupertinoColors.white,
+        leading: Text(
+          "时间",
+          style: TextStyle(
+            fontSize: CupertinoTheme.of(context)
+                .textTheme
+                .navLargeTitleTextStyle
+                .fontSize,
+            fontWeight: CupertinoTheme.of(context)
+                .textTheme
+                .navLargeTitleTextStyle
+                .fontWeight,
+          ),
+        ),
+        border: Border(bottom: BorderSide(color: Colors.transparent)),
         trailing: CupertinoButton(
           child: Icon(CupertinoIcons.add),
           onPressed: () {

@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:whale/component/timer_card.dart';
-import 'package:whale/provider/current_timer_card.dart';
+import 'package:whale/provider/current_timer_card_provider.dart';
 import 'package:whale/type/timer_card_configuration.dart';
 
 class TimerCountingPage extends StatefulWidget {

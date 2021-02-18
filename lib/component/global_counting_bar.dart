@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
-import 'package:whale/provider/current_timer_card.dart';
+import 'package:whale/provider/current_timer_card_provider.dart';
 
 class GlobalCountingBar extends StatefulWidget {
   @override

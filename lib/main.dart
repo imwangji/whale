@@ -1,11 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:leancloud_storage/leancloud.dart';
 import 'package:provider/provider.dart';
 import 'package:whale/component/global_counting_bar.dart';
 import 'package:whale/page/timer_page.dart';
-import 'package:whale/provider/current_timer_card.dart';
+import 'package:whale/provider/current_timer_card_provider.dart';
+Future<void> main() async {
+  LeanCloud.initialize(
+      'A2NVO31pitasJoNEmaIIMPTn-gzGzoHsz', 'l0AADzYKNDwBlfwumApsqNep',
+      server: 'https://api.suoxue.today',
+      queryCache: new LCQueryCache());
 
-void main() {
   runApp(
     MultiProvider(
       providers: [

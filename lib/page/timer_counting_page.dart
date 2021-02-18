@@ -57,6 +57,7 @@ class _TimerCountingPageState extends State<TimerCountingPage>
     } else {
       return GestureDetector(
         onTap: () {
+          Provider.of<CurrentTimerCard>(context,listen: false).setTimerCardName(this.widget.timerCardConfiguration.name);
           Provider.of<CurrentTimerCard>(context,listen: false).startCount();
         },
         child: Icon(

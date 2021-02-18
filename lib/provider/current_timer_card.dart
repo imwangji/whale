@@ -18,12 +18,16 @@ class CurrentTimerCard extends ChangeNotifier {
     return "${twoDigits(duration.inHours)}:$twoDigitMinutes:$twoDigitSeconds";
   }
 
+  void _resetCountingText(){
+    this.countingText = "00:00:00";
+  }
   void setTimerCardName(String name) {
     this.timerCardName = name;
     notifyListeners();
   }
 
   void startCount() {
+    _resetCountingText();
     this.isCounting = true;
     this.startAt = DateTime.now();
     this.timer = Timer.periodic(Duration(seconds: 1), (timer) {

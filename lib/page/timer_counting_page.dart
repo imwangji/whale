@@ -22,17 +22,10 @@ class _TimerCountingPageState extends State<TimerCountingPage>
   Timer timer;
   String countingText;
 
-  String _printDuration(Duration duration) {
-    String twoDigits(int n) => n.toString().padLeft(2, "0");
-    String twoDigitMinutes = twoDigits(duration.inMinutes.remainder(60));
-    String twoDigitSeconds = twoDigits(duration.inSeconds.remainder(60));
-    return "${twoDigits(duration.inHours)}:$twoDigitMinutes:$twoDigitSeconds";
-  }
+
   String getDisplayCountingText() {
     if(Provider.of<CurrentTimerCard>(context,listen: false).isCounting){
-      CurrentTimerCard currentTimerCard = Provider.of<CurrentTimerCard>(context,listen: false);
-      Duration durationTime = DateTime.now().difference(currentTimerCard.startAt);
-      return _printDuration(durationTime);
+      return Provider.of<CurrentTimerCard>(context,listen: false).countingText;
     }else{
       return "00:00:00";
     }
@@ -53,8 +46,7 @@ class _TimerCountingPageState extends State<TimerCountingPage>
     if (Provider.of<CurrentTimerCard>(context,listen: false).isCounting) {
       return GestureDetector(
         onTap: () {
-          Provider.of<CurrentTimerCard>(context,listen: false).clearCounting();
-          this.timer.cancel();
+          Provider.of<CurrentTimerCard>(context,listen: false).cancelCount();
         },
         child: Icon(
           CupertinoIcons.stop_circle,
@@ -65,13 +57,7 @@ class _TimerCountingPageState extends State<TimerCountingPage>
     } else {
       return GestureDetector(
         onTap: () {
-          Provider.of<CurrentTimerCard>(context,listen: false).setTimerCardName(this.widget.timerCardConfiguration.name);
-          Provider.of<CurrentTimerCard>(context,listen: false).setStartTime(DateTime.now());
-          this.timer = Timer.periodic(Duration(seconds: 1), (timer) {
-            setState(() {
-              this.countingText = DateTime.now().difference(Provider.of<CurrentTimerCard>(context,listen: false).startAt).toString();
-            });
-          });
+          Provider.of<CurrentTimerCard>(context,listen: false).startCount();
         },
         child: Icon(
           CupertinoIcons.play_circle,
@@ -94,7 +80,6 @@ class _TimerCountingPageState extends State<TimerCountingPage>
                 Container(
                   child: GestureDetector(
                     onTap: () {
-                      this.timer.cancel();
                       Navigator.pop(context);
                     },
                     child: Hero(

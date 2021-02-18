@@ -29,7 +29,7 @@ class _GlobalCountingBarState extends State<GlobalCountingBar> {
                       style: TextStyle(color: CupertinoColors.white),
                     ),
                     Text(
-                      "0:12:12",
+                      currentTimerCard.countingText,
                       style: TextStyle(color: CupertinoColors.white),
                     ),
                   ],

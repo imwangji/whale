@@ -5,11 +5,11 @@ import 'package:provider/provider.dart';
 import 'package:whale/component/global_counting_bar.dart';
 import 'package:whale/page/timer_page.dart';
 import 'package:whale/provider/current_timer_card_provider.dart';
+
 Future<void> main() async {
   LeanCloud.initialize(
       'A2NVO31pitasJoNEmaIIMPTn-gzGzoHsz', 'l0AADzYKNDwBlfwumApsqNep',
-      server: 'https://api.suoxue.today',
-      queryCache: new LCQueryCache());
+      server: 'https://api.suoxue.today', queryCache: new LCQueryCache());
 
   runApp(
     MultiProvider(
@@ -65,10 +65,21 @@ class _MyHomePageState extends State<MyHomePage> {
         switch (index) {
           case 0:
             return SafeArea(
-              child: Column(
+              child: Stack(
                 children: [
-                  GlobalCountingBar(),
-                  TimerPage(),
+                  Positioned(
+                    child: GlobalCountingBar(),
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                  ),
+                  Positioned(
+                    top: 55,
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    child: TimerPage(),
+                  ),
                 ],
               ),
             );

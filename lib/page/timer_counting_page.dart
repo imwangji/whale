@@ -70,6 +70,9 @@ class _TimerCountingPageState extends State<TimerCountingPage>
           }
           Provider.of<CurrentTimerCardProvider>(context,listen: false).setCountingTimerCardId(this.widget.timerCardConfiguration.timerCardId);
           Provider.of<CurrentTimerCardProvider>(context,listen: false).setTimerCardName(this.widget.timerCardConfiguration.name);
+          Provider.of<CurrentTimerCardProvider>(context,listen: false).setTimerCardCategoryName(this.widget.timerCardConfiguration.categoryName);
+          Provider.of<CurrentTimerCardProvider>(context,listen: false).setTimerCardTotalHourMinute(this.widget.timerCardConfiguration.totalTime);
+          Provider.of<CurrentTimerCardProvider>(context,listen: false).setTimerCardBackgroundImageUrl(this.widget.timerCardConfiguration.backgroundImageUrl);
           Provider.of<CurrentTimerCardProvider>(context,listen: false).startCount();
         },
         child: Icon(

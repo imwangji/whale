@@ -3,8 +3,11 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 
 class CurrentTimerCardProvider extends ChangeNotifier {
+  String timerCardTotalHourMinute;
+  String timerCardCategoryName;
   String timerCardId;
   String timerCardName;
+  String timerCardBackgroundImageUrl;
   DateTime startAt;
   bool isCounting;
   Timer timer;
@@ -42,6 +45,18 @@ class CurrentTimerCardProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  void setTimerCardCategoryName(String timerCardCategoryName){
+    this.timerCardCategoryName = timerCardCategoryName;
+    notifyListeners();
+  }
+  void setTimerCardTotalHourMinute(String totalHourMinute){
+    this.timerCardTotalHourMinute = totalHourMinute;
+    notifyListeners();
+  }
+  void setTimerCardBackgroundImageUrl(String url){
+    this.timerCardBackgroundImageUrl = url;
+    notifyListeners();
+  }
   void cancelCount(){
     this.isCounting = false;
     this.timer.cancel();

@@ -62,6 +62,7 @@ class _WrappedTimerCardState extends State<WrappedTimerCard> {
                 isCountingMode: true,
                 categoryName: this.widget.categoryName,
                 totalTime: this.widget.totalTimeToDayHourMinutes,
+                backgroundImageUrl: this.widget.backgroundImageUrl,
               ),
             );
           },

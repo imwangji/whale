@@ -9,8 +9,8 @@ import 'package:whale/type/timer_card_configuration.dart';
 
 class TimerCountingPage extends StatefulWidget {
   TimerCardConfiguration timerCardConfiguration;
-
-  TimerCountingPage({@required this.timerCardConfiguration});
+  String heroAnimationTag = "";
+  TimerCountingPage({@required this.timerCardConfiguration,@required this.heroAnimationTag});
 
   @override
   _TimerCountingPageState createState() => _TimerCountingPageState();
@@ -84,7 +84,7 @@ class _TimerCountingPageState extends State<TimerCountingPage>
                       Navigator.pop(context);
                     },
                     child: Hero(
-                      tag: "timer_card",
+                      tag: this.widget.heroAnimationTag,
                       child: TimerCard(this.widget.timerCardConfiguration),
                     ),
                   ),

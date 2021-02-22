@@ -1,14 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:leancloud_storage/leancloud.dart';
-import 'package:whale/component/global_counting_bar.dart';
-import 'package:whale/component/timer_card.dart';
+import 'package:whale/component/wrapped_timer_card.dart';
 import 'package:whale/model/av_file_entity.dart';
 import 'package:whale/model/timer_card_category_entity.dart';
 import 'package:whale/model/timer_card_entity.dart';
 import 'package:whale/page/timer_card_add_page.dart';
-import 'package:whale/page/timer_counting_page.dart';
-import 'package:whale/type/timer_card_configuration.dart';
 
 class TimerPage extends StatefulWidget {
   @override
@@ -64,47 +61,26 @@ class _TimerPageState extends State<TimerPage> {
         ),
       ),
       child: SafeArea(
-          child: Stack(
-        children: [
-          ListView.builder(
-            shrinkWrap: true,
-            itemCount: timerCardList.length,
-            itemBuilder: (context, index) {
-              return GestureDetector(
-                child: Hero(
-                  tag: "timer_card",
-                  child: TimerCard(
-                    TimerCardConfiguration(
-                      name: timerCardList.elementAt(index).name,
-                      categoryName:
-                          timerCardList.elementAt(index).category.name,
-                      totalTime: timerCardList.elementAt(index).totalTime,
-                      backgroundImageUrl: timerCardList
-                          .elementAt(index)
-                          .category
-                          .backgroundImage
-                          .url,
-                    ),
-                  ),
-                ),
-                onTap: () {
-                  var route = PageRouteBuilder(
-                    pageBuilder: (context, animation, secondaryAnimation) {
-                      return TimerCountingPage(
-                        timerCardConfiguration: TimerCardConfiguration(
-                          height: 500,
-                          isCountingMode: true,
-                        ),
-                      );
-                    },
-                  );
-                  Navigator.of(context).push(route);
-                },
-              );
-            },
-          ),
-        ],
-      )),
+        child: Stack(
+          children: [
+            ListView.builder(
+              shrinkWrap: true,
+              itemCount: timerCardList.length,
+              itemBuilder: (context, index) {
+                var currentElement = timerCardList.elementAt(index);
+                return WrappedTimerCard(
+                  heroTag: currentElement.objectId,
+                  name: currentElement.name,
+                  categoryName: currentElement.category.name,
+                  backgroundImageUrl:
+                      currentElement.category.backgroundImage.url,
+                  totalTime: currentElement.totalTime,
+                );
+              },
+            ),
+          ],
+        ),
+      ),
     );
   }
 

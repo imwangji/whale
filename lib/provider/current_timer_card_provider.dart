@@ -2,14 +2,14 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 
-class CurrentTimerCard extends ChangeNotifier {
+class CurrentTimerCardProvider extends ChangeNotifier {
   String timerCardId;
   String timerCardName;
   DateTime startAt;
   bool isCounting;
   Timer timer;
   String countingText = "00:00:00"; // 转换过的时间显示，如：02:12:13
-  CurrentTimerCard({this.isCounting = false, this.timerCardName = "未传入TimerCardName"});
+  CurrentTimerCardProvider({this.isCounting = false, this.timerCardName = "未传入TimerCardName"});
 
   String _printDuration(Duration duration) {
     String twoDigits(int n) => n.toString().padLeft(2, "0");
@@ -23,6 +23,11 @@ class CurrentTimerCard extends ChangeNotifier {
   }
   void setTimerCardName(String name) {
     this.timerCardName = name;
+    notifyListeners();
+  }
+
+  void setCountingTimerCardId(String timerCardObjectId){
+    this.timerCardId = timerCardObjectId;
     notifyListeners();
   }
 

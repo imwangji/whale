@@ -104,7 +104,7 @@ class _TimerCardState extends State<TimerCard>
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "1天3小时3分钟",
+                this.widget.configuration.totalTime,
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,

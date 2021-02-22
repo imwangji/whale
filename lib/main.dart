@@ -14,7 +14,7 @@ Future<void> main() async {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => CurrentTimerCard()),
+        ChangeNotifierProvider(create: (context) => CurrentTimerCardProvider()),
       ],
       child: MyApp(),
     ),
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return CupertinoApp(
       title: '孤岛鲸鱼',
-      home: Consumer<CurrentTimerCard>(
+      home: Consumer<CurrentTimerCardProvider>(
         builder: (context, model, child) {
           return MyHomePage(title: '孤岛鲸鱼');
         },

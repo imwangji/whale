@@ -7,6 +7,7 @@ import 'package:whale/component/timer_card.dart';
 import 'package:whale/provider/current_timer_card_provider.dart';
 import 'package:whale/type/timer_card_configuration.dart';
 
+// ignore: must_be_immutable
 class TimerCountingPage extends StatefulWidget {
   TimerCardConfiguration timerCardConfiguration;
   String heroAnimationTag = "";
@@ -24,8 +25,9 @@ class _TimerCountingPageState extends State<TimerCountingPage>
 
 
   String getDisplayCountingText() {
-    if(Provider.of<CurrentTimerCard>(context,listen: false).isCounting){
-      return Provider.of<CurrentTimerCard>(context,listen: false).countingText;
+    if(Provider.of<CurrentTimerCardProvider>(context,listen: false).isCounting &&
+        Provider.of<CurrentTimerCardProvider>(context,listen: false).timerCardId == this.widget.timerCardConfiguration.timerCardId){
+      return Provider.of<CurrentTimerCardProvider>(context,listen: false).countingText;
     }else{
       return "00:00:00";
     }
@@ -42,11 +44,17 @@ class _TimerCountingPageState extends State<TimerCountingPage>
     _controller.dispose();
   }
 
+  // 是否是当前正在计时的卡片
+  bool isCurrentCountingTimerCard(){
+    return Provider.of<CurrentTimerCardProvider>(context,listen: false).isCounting &&
+        Provider.of<CurrentTimerCardProvider>(context,listen: false).timerCardId == this.widget.timerCardConfiguration.timerCardId;
+  }
+
   Widget getCountingIcon() {
-    if (Provider.of<CurrentTimerCard>(context,listen: false).isCounting) {
+    if (this.isCurrentCountingTimerCard()) {
       return GestureDetector(
         onTap: () {
-          Provider.of<CurrentTimerCard>(context,listen: false).cancelCount();
+          Provider.of<CurrentTimerCardProvider>(context,listen: false).cancelCount();
         },
         child: Icon(
           CupertinoIcons.stop_circle,
@@ -57,8 +65,12 @@ class _TimerCountingPageState extends State<TimerCountingPage>
     } else {
       return GestureDetector(
         onTap: () {
-          Provider.of<CurrentTimerCard>(context,listen: false).setTimerCardName(this.widget.timerCardConfiguration.name);
-          Provider.of<CurrentTimerCard>(context,listen: false).startCount();
+          if(Provider.of<CurrentTimerCardProvider>(context,listen: false).isCounting){
+            return;
+          }
+          Provider.of<CurrentTimerCardProvider>(context,listen: false).setCountingTimerCardId(this.widget.timerCardConfiguration.timerCardId);
+          Provider.of<CurrentTimerCardProvider>(context,listen: false).setTimerCardName(this.widget.timerCardConfiguration.name);
+          Provider.of<CurrentTimerCardProvider>(context,listen: false).startCount();
         },
         child: Icon(
           CupertinoIcons.play_circle,
@@ -72,7 +84,7 @@ class _TimerCountingPageState extends State<TimerCountingPage>
   @override
   Widget build(BuildContext context) {
 
-    return Consumer<CurrentTimerCard>(
+    return Consumer<CurrentTimerCardProvider>(
       builder: (context, currentTimerCard, child) {
         return CupertinoPageScaffold(
           child: SafeArea(

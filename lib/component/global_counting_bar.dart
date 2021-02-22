@@ -10,7 +10,7 @@ class GlobalCountingBar extends StatefulWidget {
 class _GlobalCountingBarState extends State<GlobalCountingBar> {
   @override
   Widget build(BuildContext context) {
-    return Consumer<CurrentTimerCard>(
+    return Consumer<CurrentTimerCardProvider>(
       builder: (context, currentTimerCard, child) {
         return currentTimerCard.isCounting
             ? Container(

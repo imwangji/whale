@@ -1,4 +1,5 @@
 class TimerCardConfiguration {
+  String timerCardId;
   bool isCountingMode;
   String backgroundImageUrl;
   String totalTime;
@@ -8,6 +9,7 @@ class TimerCardConfiguration {
   Function onCloseButtonTapped;
   // ignore: empty_constructor_bodies
   TimerCardConfiguration({
+    this.timerCardId = '',
     this.isCountingMode = false,
     this.backgroundImageUrl = "http://lc-a2nvo31p.cn-n1.lcfile.com/ff21d25a1d7edc97bd7e.png/Open%20Doodles%20-%20Studying.png",
     this.totalTime = '',

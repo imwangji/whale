@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:leancloud_storage/leancloud.dart';
 import 'package:provider/provider.dart';
 import 'package:whale/component/global_counting_bar.dart';
+import 'package:whale/page/login_page.dart';
 import 'package:whale/page/timer_page.dart';
 import 'package:whale/provider/current_timer_card_provider.dart';
+import 'package:whale/provider/user_provider.dart';
 
 Future<void> main() async {
   LeanCloud.initialize(
@@ -15,6 +17,7 @@ Future<void> main() async {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => CurrentTimerCardProvider()),
+        ChangeNotifierProvider(create: (context) => UserProvider()),
       ],
       child: MyApp(),
     ),
@@ -27,8 +30,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return CupertinoApp(
       title: '孤岛鲸鱼',
-      home: Consumer<CurrentTimerCardProvider>(
-        builder: (context, model, child) {
+      home: Consumer2<CurrentTimerCardProvider,UserProvider>(
+        builder: (context, currentTimerCardProvider,userProvider, child) {
+          return LoginPage();
           return MyHomePage(title: '孤岛鲸鱼');
         },
       ),

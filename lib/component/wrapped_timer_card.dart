@@ -3,6 +3,7 @@ import 'package:whale/component/timer_card.dart';
 import 'package:whale/page/timer_counting_page.dart';
 import 'package:whale/type/timer_card_configuration.dart';
 
+// ignore: must_be_immutable
 class WrappedTimerCard extends StatefulWidget {
   String heroTag;
   String name;

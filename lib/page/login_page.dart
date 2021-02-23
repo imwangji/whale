@@ -27,7 +27,7 @@ class _LoginPageState extends State<LoginPage> {
                     height: 128,
                   ),
                   Text(
-                    "Whale",
+                    "孤岛鲸鱼",
                     style: TextStyle(
                       color: CupertinoColors.black,
                       fontSize: CupertinoTheme.of(context)
@@ -53,26 +53,42 @@ class _LoginPageState extends State<LoginPage> {
                   Container(
                     height: 40,
                   ),
-                  Flex(
-                    direction: Axis.horizontal,
-                    children: [
-                      CupertinoTextField(
-                        placeholder: "手机号",
-                        padding:
-                            EdgeInsets.symmetric(vertical: 16, horizontal: 19),
-                        decoration: BoxDecoration(
-                          border: Border(
-                            bottom: BorderSide(
-                              color: CupertinoColors.systemGrey5,
-                            ),
-                          ),
+                  Container(
+                    decoration: BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(
+                          color: CupertinoColors.systemGrey5,
                         ),
                       ),
-                      CupertinoButton(
-                        child: Text("获取验证码"),
-                        onPressed: () {},
-                      )
-                    ],
+                    ),
+                    child: Flex(
+                      direction: Axis.horizontal,
+                      children: [
+                        Flexible(
+                          flex: 1,
+                          child: CupertinoTextField.borderless(
+                            placeholder: "手机号",
+                            padding: EdgeInsets.symmetric(
+                                vertical: 16, horizontal: 19),
+                          ),
+                        ),
+                        CupertinoButton(
+                          child: Text("获取验证码"),
+                          onPressed: () {},
+                        ),
+                      ],
+                    ),
+                  ),
+                  CupertinoTextField(
+                    placeholder: "短信验证码",
+                    padding: EdgeInsets.symmetric(vertical: 16, horizontal: 19),
+                    decoration: BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(
+                          color: CupertinoColors.systemGrey5,
+                        ),
+                      ),
+                    ),
                   )
                 ],
               ),
@@ -82,9 +98,13 @@ class _LoginPageState extends State<LoginPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   CupertinoButton.filled(
+                    borderRadius: BorderRadius.circular(14),
                     child: Text("登录"),
                     onPressed: () {},
                   ),
+                  Container(
+                    height: 80,
+                  )
                 ],
               ),
             ],

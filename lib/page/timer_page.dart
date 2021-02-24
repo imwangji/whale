@@ -28,6 +28,8 @@ class _TimerPageState extends State<TimerPage> {
   void initState() {
     super.initState();
     timerCardList = [];
+    _getData(Provider.of<UserProvider>(context,listen: false).currentUser);
+
   }
 
   // 第一次进入和加载更多时
@@ -93,7 +95,6 @@ class _TimerPageState extends State<TimerPage> {
   Widget build(BuildContext context) {
     return Consumer<UserProvider>(
       builder: (context, userProvider, child) {
-        _getData(userProvider.currentUser);
         return CupertinoPageScaffold(
           navigationBar: CupertinoNavigationBar(
             backgroundColor: CupertinoColors.white,

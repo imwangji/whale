@@ -23,7 +23,6 @@ class _TimerPageState extends State<TimerPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     timerCardList = [];
     _getData();

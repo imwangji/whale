@@ -55,6 +55,7 @@ class _TimerPageState extends State<TimerPage> {
       setState(() {
         timerCardList = _timerCardList;
       });
+      Provider.of<CurrentTimerCardProvider>(context,listen: false).setIsNeedFetchNewTimerCardData(false);
     } catch (e) {
       print(e);
     }

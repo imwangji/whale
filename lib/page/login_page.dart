@@ -76,7 +76,8 @@ class _LoginPageState extends State<LoginPage> {
                           children: [
                             Flexible(
                               flex: 1,
-                              child: CupertinoTextField.borderless(
+                              child: CupertinoTextField(
+                                decoration: BoxDecoration(color: CupertinoColors.white,border: Border.all(width: 0,color: CupertinoColors.white)),
                                 controller: phoneController,
                                 placeholder: "手机号",
                                 padding: EdgeInsets.symmetric(

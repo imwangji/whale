@@ -7,6 +7,7 @@ import 'package:whale/model/av_file_entity.dart';
 import 'package:whale/model/timer_card_category_entity.dart';
 import 'package:whale/model/timer_card_entity.dart';
 import 'package:whale/page/timer_card_add_page.dart';
+import 'package:whale/provider/current_timer_card_provider.dart';
 import 'package:whale/provider/user_provider.dart';
 
 class TimerPage extends StatefulWidget {
@@ -29,7 +30,6 @@ class _TimerPageState extends State<TimerPage> {
     super.initState();
     timerCardList = [];
     _getData(Provider.of<UserProvider>(context,listen: false).currentUser);
-
   }
 
   // 第一次进入和加载更多时
@@ -93,8 +93,12 @@ class _TimerPageState extends State<TimerPage> {
   /// 渲染函数
   @override
   Widget build(BuildContext context) {
-    return Consumer<UserProvider>(
-      builder: (context, userProvider, child) {
+
+    return Consumer2<UserProvider,CurrentTimerCardProvider>(
+      builder: (context, userProvider,currentTimerCardProvider, child) {
+        if(currentTimerCardProvider.isNeedFetchNewTimerCardData){
+          _getData(userProvider.currentUser);
+        }
         return CupertinoPageScaffold(
           navigationBar: CupertinoNavigationBar(
             backgroundColor: CupertinoColors.white,

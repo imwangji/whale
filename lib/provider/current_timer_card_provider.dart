@@ -13,6 +13,8 @@ class CurrentTimerCardProvider extends ChangeNotifier {
   bool isCounting;
   Timer timer;
   String countingText = "00:00:00"; // 转换过的时间显示，如：02:12:13
+  bool isNeedFetchNewTimerCardData = false;
+
   CurrentTimerCardProvider({this.isCounting = false, this.timerCardName = "未传入TimerCardName"});
 
   String _printDuration(Duration duration) {
@@ -29,7 +31,10 @@ class CurrentTimerCardProvider extends ChangeNotifier {
     this.timerCardName = name;
     notifyListeners();
   }
-
+  void setIsNeedFetchNewTimerCardData(bool isNeed){
+    this.isNeedFetchNewTimerCardData = isNeed;
+    notifyListeners();
+  }
   void setCountingTimerCardId(String timerCardObjectId){
     this.timerCardId = timerCardObjectId;
     notifyListeners();

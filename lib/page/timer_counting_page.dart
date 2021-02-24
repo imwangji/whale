@@ -97,6 +97,7 @@ class _TimerCountingPageState extends State<TimerCountingPage>
                   child: GestureDetector(
                     onTap: () {
                       Navigator.pop(context);
+                      currentTimerCard.setIsNeedFetchNewTimerCardData(true);
                     },
                     child: Hero(
                       tag: this.widget.heroAnimationTag,

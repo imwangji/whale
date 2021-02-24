@@ -33,6 +33,9 @@ class CurrentTimerCardProvider extends ChangeNotifier {
   }
   void setIsNeedFetchNewTimerCardData(bool isNeed){
     this.isNeedFetchNewTimerCardData = isNeed;
+    if(this.isCounting){
+      this.isNeedFetchNewTimerCardData = false;
+    }
     notifyListeners();
   }
   void setCountingTimerCardId(String timerCardObjectId){

@@ -4,6 +4,14 @@ import 'package:leancloud_storage/leancloud.dart';
 class UserProvider extends ChangeNotifier {
   LCUser currentUser;
 
+  _check() async{
+    LCUser currentUser = await LCUser.getCurrent();
+    this.setCurrentUser(currentUser);
+  }
+
+  UserProvider(){
+    _check();
+  }
   setCurrentUser(LCUser user) {
     this.currentUser = user;
     notifyListeners();

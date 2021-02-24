@@ -48,12 +48,12 @@ class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
 
   final String title;
+
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   Widget build(BuildContext context) {
     return CupertinoTabScaffold(
@@ -82,7 +82,10 @@ class _MyHomePageState extends State<MyHomePage> {
                     right: 0,
                   ),
                   Positioned(
-                    top: 55,
+                    top: Provider.of<CurrentTimerCardProvider>(context)
+                            .isCounting
+                        ? 55
+                        : 0,
                     bottom: 0,
                     left: 0,
                     right: 0,

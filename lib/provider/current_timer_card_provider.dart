@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
+import 'package:leancloud_storage/leancloud.dart';
 
 class CurrentTimerCardProvider extends ChangeNotifier {
   String timerCardTotalHourMinute;
@@ -57,9 +58,17 @@ class CurrentTimerCardProvider extends ChangeNotifier {
     this.timerCardBackgroundImageUrl = url;
     notifyListeners();
   }
-  void cancelCount(){
+  void cancelCount() async{
     this.isCounting = false;
     this.timer.cancel();
+    LCQuery query = LCQuery("TimerCard");
+    query.whereEqualTo("objectId", timerCardId);
+    LCObject timerCard = await query.first();
+    var timeOfThisRecord = DateTime.now().difference(this.startAt).inMilliseconds;
+    var existingTotalTime = timerCard["totalTime"];
+    var newTotalTime = existingTotalTime+timeOfThisRecord;
+    timerCard["totalTime"] = newTotalTime;
+    await timerCard.save();
     notifyListeners();
   }
 }

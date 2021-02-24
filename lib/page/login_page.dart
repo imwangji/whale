@@ -1,7 +1,6 @@
-import 'dart:async';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:leancloud_storage/leancloud.dart';
 import 'package:provider/provider.dart';
 import 'package:toast/toast.dart';
 import 'package:whale/component/base_padding.dart';
@@ -121,11 +120,19 @@ class _LoginPageState extends State<LoginPage> {
                       CupertinoButton.filled(
                         borderRadius: BorderRadius.circular(14),
                         child: Text("登录"),
-                        onPressed: () {
+                        onPressed: () async {
                           if (phoneController.value.text.isNotEmpty &&
                               smsCodeController.value.text.isNotEmpty) {
-                            userProvider
-                                .loginByPhoneNumber(phoneController.value.text);
+                            try {
+                              LCUser user =
+                                  await userProvider.loginByPhoneNumber(
+                                      phoneController.value.text,
+                                      smsCodeController.value.text);
+                              userProvider.setCurrentUser(user);
+                            } catch (e) {
+                              LCException exception = e;
+                              Toast.show(exception.message, context);
+                            }
                           }
                         },
                       ),

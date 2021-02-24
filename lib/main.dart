@@ -30,10 +30,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return CupertinoApp(
       title: '孤岛鲸鱼',
-      home: Consumer2<CurrentTimerCardProvider,UserProvider>(
-        builder: (context, currentTimerCardProvider,userProvider, child) {
-          return LoginPage();
-          return MyHomePage(title: '孤岛鲸鱼');
+      home: Consumer2<CurrentTimerCardProvider, UserProvider>(
+        builder: (context, currentTimerCardProvider, userProvider, child) {
+          if (userProvider.currentUser != null) {
+            return MyHomePage(title: '孤岛鲸鱼');
+          } else {
+            return LoginPage();
+          }
         },
       ),
     );

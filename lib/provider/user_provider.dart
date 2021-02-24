@@ -4,15 +4,30 @@ import 'package:leancloud_storage/leancloud.dart';
 class UserProvider extends ChangeNotifier {
   LCUser currentUser;
 
-  setCurrentUser(LCUser user){
+  setCurrentUser(LCUser user) {
     this.currentUser = user;
     notifyListeners();
   }
-  loginByPhoneNumber(phoneNumber){
-    notifyListeners();
+
+  Future<LCUser> loginByPhoneNumber(String phoneNumber, String smsCode) async {
+    try {
+      if (phoneNumber.isNotEmpty && smsCode.isNotEmpty) {
+        return LCUser.signUpOrLoginByMobilePhone(phoneNumber, smsCode);
+      } else {
+        throw LCException(6261001001, "电话号码或验证码不正确");
+      }
+    } catch (e) {
+      throw e;
+    }
   }
 
-  requestSMSCode(phoneNumber){
-    notifyListeners();
+  Future<dynamic> requestSMSCode(String phoneNumber) {
+    try {
+      return LCSMSClient.requestSMSCode(phoneNumber);
+    } catch (e) {
+      LCException exception = e;
+      print(exception.message);
+      throw e;
+    }
   }
 }

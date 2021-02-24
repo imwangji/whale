@@ -60,6 +60,7 @@ class _WrappedTimerCardState extends State<WrappedTimerCard> {
               timerCardConfiguration: TimerCardConfiguration(
                 timerCardId: this.widget.heroTag,
                 height: 500,
+                name: this.widget.name,
                 isCountingMode: true,
                 categoryName: this.widget.categoryName,
                 totalTime: this.widget.totalTimeToDayHourMinutes,

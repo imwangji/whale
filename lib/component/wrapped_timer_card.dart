@@ -27,7 +27,7 @@ class WrappedTimerCard extends StatefulWidget {
       return "${duration.inMinutes} 分钟";
     }
     if (duration.inHours > 0) {
-      return "${duration.inDays} 小时 ${duration.inMinutes % 60} 分钟";
+      return "${duration.inHours} 小时 ${duration.inMinutes % 60} 分钟";
     }
     return duration.inDays.toString();
   }

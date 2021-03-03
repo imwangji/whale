@@ -21,6 +21,7 @@ class _TimerPageState extends State<TimerPage> {
   Future<List<LCObject>> queryTimerCard(LCUser currentUser) {
     LCQuery query = LCQuery("TimerCard");
     query.include("category.backgroundImage");
+    query.include("category.name");
     query.whereEqualTo("user", currentUser);
     return query.find();
   }
@@ -46,7 +47,7 @@ class _TimerPageState extends State<TimerPage> {
             category: TimerCardCategoryEntity(
               name: element["category"]["name"],
               backgroundImage: AVFileEntity(
-                url: element["category"]["backgroundImage"]["url"],
+                url: "https://dev-file.suoxue.today/"+element["category"]["backgroundImage"]["key"],
               ),
             ),
           ),

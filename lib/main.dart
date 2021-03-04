@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:leancloud_storage/leancloud.dart';
 import 'package:provider/provider.dart';
 import 'package:whale/component/global_counting_bar.dart';
@@ -12,7 +13,6 @@ Future<void> main() async {
   LeanCloud.initialize(
       'A2NVO31pitasJoNEmaIIMPTn-gzGzoHsz', 'l0AADzYKNDwBlfwumApsqNep',
       server: 'https://api.suoxue.today', queryCache: new LCQueryCache());
-
   runApp(
     MultiProvider(
       providers: [
@@ -40,6 +40,7 @@ class MyApp extends StatelessWidget {
           }
         },
       ),
+      builder: EasyLoading.init(),
     );
   }
 }

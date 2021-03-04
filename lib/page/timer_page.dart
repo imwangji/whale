@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:leancloud_storage/leancloud.dart';
 import 'package:provider/provider.dart';
 import 'package:whale/component/wrapped_timer_card.dart';
@@ -29,11 +30,12 @@ class _TimerPageState extends State<TimerPage> {
   void initState() {
     super.initState();
     timerCardList = [];
-    _getData(Provider.of<UserProvider>(context,listen: false).currentUser);
+    _getData(Provider.of<UserProvider>(context, listen: false).currentUser);
   }
 
   // 第一次进入和加载更多时
   _getData(LCUser currentUser) async {
+    EasyLoading.show(status: "加载种");
     try {
       var response = await queryTimerCard(currentUser);
       List<TimerCardEntity> _timerCardList = [];
@@ -55,7 +57,9 @@ class _TimerPageState extends State<TimerPage> {
       setState(() {
         timerCardList = _timerCardList;
       });
-      Provider.of<CurrentTimerCardProvider>(context,listen: false).setIsNeedFetchNewTimerCardData(false);
+      Provider.of<CurrentTimerCardProvider>(context, listen: false)
+          .setIsNeedFetchNewTimerCardData(false);
+      EasyLoading.dismiss();
     } catch (e) {
       print(e);
     }
@@ -94,10 +98,9 @@ class _TimerPageState extends State<TimerPage> {
   /// 渲染函数
   @override
   Widget build(BuildContext context) {
-
-    return Consumer2<UserProvider,CurrentTimerCardProvider>(
-      builder: (context, userProvider,currentTimerCardProvider, child) {
-        if(currentTimerCardProvider.isNeedFetchNewTimerCardData){
+    return Consumer2<UserProvider, CurrentTimerCardProvider>(
+      builder: (context, userProvider, currentTimerCardProvider, child) {
+        if (currentTimerCardProvider.isNeedFetchNewTimerCardData) {
           _getData(userProvider.currentUser);
         }
         return CupertinoPageScaffold(

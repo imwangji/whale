@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:leancloud_storage/leancloud.dart';
 import 'package:provider/provider.dart';
 import 'package:toast/toast.dart';
@@ -77,7 +78,11 @@ class _LoginPageState extends State<LoginPage> {
                             Flexible(
                               flex: 1,
                               child: CupertinoTextField(
-                                decoration: BoxDecoration(color: CupertinoColors.white,border: Border.all(width: 0,color: CupertinoColors.white)),
+                                decoration: BoxDecoration(
+                                    color: CupertinoColors.white,
+                                    border: Border.all(
+                                        width: 0,
+                                        color: CupertinoColors.white)),
                                 controller: phoneController,
                                 placeholder: "手机号",
                                 padding: EdgeInsets.symmetric(
@@ -124,16 +129,20 @@ class _LoginPageState extends State<LoginPage> {
                         onPressed: () async {
                           if (phoneController.value.text.isNotEmpty &&
                               smsCodeController.value.text.isNotEmpty) {
+                            EasyLoading.show(status: "登录中");
                             try {
                               LCUser user =
                                   await userProvider.loginByPhoneNumber(
                                       phoneController.value.text,
                                       smsCodeController.value.text);
                               userProvider.setCurrentUser(user);
+                              EasyLoading.dismiss();
                             } catch (e) {
                               LCException exception = e;
                               Toast.show(exception.message, context);
                             }
+                          } else {
+                            Toast.show("什么都没输入啊", context);
                           }
                         },
                       ),
